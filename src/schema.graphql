@@ -3,22 +3,37 @@
 # ------------------------------------------------------
 
 type User {
-  id: Int
+  id: Int!
   fullName: String
   username: String
   email: String
   password: String
 }
 
+type Card {
+  id: Int!
+  cardNumber: String!
+  cvv: Int!
+  expireDate: DateTime!
+  type: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Query {
   GetAllUsers: [User!]!
   GetOneUser(UserId: Int!): User
+  getAllCards: [Card!]!
 }
 
 type Mutation {
   CreateAUser(createUserArgs: AddUserArgs!): String!
   updateAUser(updateUserArgs: UpdateUserArgs!): String!
   DeleteUser(deleteUser: Int!): String!
+  createCard(addCardArgs: AddCardArgs!): String!
 }
 
 input AddUserArgs {
@@ -29,9 +44,17 @@ input AddUserArgs {
 }
 
 input UpdateUserArgs {
-  id: Float!
+  id: Int!
   fullName: String
   username: String
   email: String
   password: String
+}
+
+input AddCardArgs {
+  cardNumber: String!
+  cvv: Int!
+  expireDate: DateTime!
+  type: String!
+  userId: Int!
 }

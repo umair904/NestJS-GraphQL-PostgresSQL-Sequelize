@@ -1,12 +1,15 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
-import { Column, Model, Table } from "sequelize-typescript";
+import { AutoIncrement, BelongsTo, Column, ForeignKey, HasOne, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { Card } from "../card/card.model";
 
 @Table
 @ObjectType()
 export class User extends Model {
 
-    @Column({primaryKey: true, autoIncrement: true})
-    @Field((type)=> Int, {nullable:true})
+    @PrimaryKey
+    @AutoIncrement
+    @Column
+    @Field((type)=> Int, )
     id : number
 
     @Column
@@ -24,4 +27,12 @@ export class User extends Model {
     @Column
     @Field({nullable:true})
     password : string;
+
+    @Column
+    @ForeignKey(()=> Card)
+    cardId: number
+
+    @BelongsTo(()=> Card)
+    card: Card
+    
 }

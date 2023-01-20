@@ -1,4 +1,5 @@
 import { InputType, Field, Int} from '@nestjs/graphql'
+import { Card } from 'src/card/card.model';
 
 @InputType()
 export class AddUserArgs{
@@ -19,7 +20,7 @@ export class AddUserArgs{
 @InputType()
 export class UpdateUserArgs{
 
-    @Field()
+    @Field(()=> Int)
     id: number
 
     @Field({nullable:true})
@@ -33,4 +34,15 @@ export class UpdateUserArgs{
 
     @Field({nullable:true})
     password: string;
+}
+
+@InputType()
+export class AddCardToUser{
+    
+    @Field(()=> Int)
+    userId: number
+
+    @Field()
+    card: Card
+
 }

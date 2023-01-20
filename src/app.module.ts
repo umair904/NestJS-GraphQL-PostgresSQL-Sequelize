@@ -7,6 +7,7 @@ import { UserModule } from './user/user.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver } from '@nestjs/apollo';
 import { join } from 'path';
+import { CardModule } from './card/card.module';
 
 
 @Module({
@@ -28,11 +29,14 @@ import { join } from 'path';
         database: configService.get('DB_NAME'),
         // entities:[__dirname + '/**/*.entity{.ts,.js}'],
         autoLoadModels:true,
-        synchronize: true,
+        sync: {
+          force: true
+       },
       }),
       inject: [ConfigService],
     }),
     UserModule,
+    CardModule,
   ],
   controllers: [AppController],
   providers: [AppService],
