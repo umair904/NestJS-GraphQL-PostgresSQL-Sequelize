@@ -50,7 +50,7 @@ export class UserService {
             return 'No user found against this userID'
         }
         user.card = addCardToUser.card;
-        user.cardId = addCardToUser.card.id;
+        user.cardId = 1;
         await user.save()
         return "Card added to user successfully"
     }

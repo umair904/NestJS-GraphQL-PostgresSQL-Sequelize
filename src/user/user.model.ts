@@ -30,9 +30,11 @@ export class User extends Model {
 
     @Column
     @ForeignKey(()=> Card)
+    @Field(()=> Int,{nullable:true})
     cardId: number
 
     @BelongsTo(()=> Card)
+    @Field(()=> Card, {nullable:true})
     card: Card
     
 }
