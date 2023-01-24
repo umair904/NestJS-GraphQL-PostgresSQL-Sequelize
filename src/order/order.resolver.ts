@@ -1,5 +1,5 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { AddOrderArgs } from './args/order.args';
+import { AddOrderArgs, DeleteOrderArgs } from './args/order.args';
 import { Order } from './order.model';
 import { OrderService } from './order.service';
 
@@ -16,4 +16,10 @@ export class OrderResolver {
     placeOrder(@Args({name:"addOrderArgs"}) addOrderArgs: AddOrderArgs){
         return this.orderService.createOrder(addOrderArgs)
     }
+
+    @Mutation(returns => String)
+    deleteOrder(@Args({name:"deleteOrderArgs"}) deleteOrderArgs: DeleteOrderArgs){
+        return this.orderService.deleteOrder(deleteOrderArgs)
+    }
+
 }

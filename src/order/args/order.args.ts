@@ -12,4 +12,17 @@ export class AddOrderArgs {
     @Field(()=> Int)
     quantity: number
 
+    @Field(()=> Int, {nullable:true})
+    orderId: number
 }
+
+@InputType()
+export class DeleteOrderArgs{
+
+    @Field(()=> Int)
+    userId : number
+
+    @Field(()=> Int)
+    orderId: number
+}
+

@@ -7,7 +7,6 @@ type Product {
   name: String!
   price: Int!
   discription: String!
-  orderDetails: [OrderDetail!]
 }
 
 type OrderDetail {
@@ -15,6 +14,7 @@ type OrderDetail {
   quantity: Int!
   productId: Int
   orderId: Int
+  product: Product!
 }
 
 type Order {
@@ -64,6 +64,7 @@ type Mutation {
   createCard(addCardArgs: AddCardArgs!): String!
   createProduct(addProductArgs: AddProductArgs!): String!
   placeOrder(addOrderArgs: AddOrderArgs!): String!
+  deleteOrder(deleteOrderArgs: DeleteOrderArgs!): String!
 }
 
 input AddUserArgs {
@@ -99,4 +100,10 @@ input AddOrderArgs {
   userId: Int!
   productId: Int!
   quantity: Int!
+  orderId: Int
+}
+
+input DeleteOrderArgs {
+  userId: Int!
+  orderId: Int!
 }

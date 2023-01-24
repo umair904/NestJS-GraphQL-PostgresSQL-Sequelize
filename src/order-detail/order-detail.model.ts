@@ -31,5 +31,6 @@ export class OrderDetail extends Model {
     order: Order
 
     @BelongsTo(()=> Product)
+    @Field(()=> Product)
     product: Product
 }

@@ -25,6 +25,5 @@ export class Product extends Model {
     discription : string;
 
     @HasMany(()=> OrderDetail)
-    @Field(()=> [OrderDetail],{nullable:true})
     orderDetails: OrderDetail[]
 }

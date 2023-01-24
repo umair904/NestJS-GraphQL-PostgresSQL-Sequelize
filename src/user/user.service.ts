@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Card } from 'src/card/card.model';
 import { OrderDetail } from 'src/order-detail/order-detail.model';
 import { Order } from 'src/order/order.model';
+import { Product } from 'src/product/product.model';
 import {AddUserArgs, UpdateUserArgs } from './args/user.args';
 import { User } from './user.model';
 
@@ -21,7 +22,10 @@ export class UserService {
             },
             {
                 model: Order,
-                include:[OrderDetail]
+                include:[{
+                  model:  OrderDetail,
+                  include:[Product]
+                }]
             }
         ]})
         if(user){
