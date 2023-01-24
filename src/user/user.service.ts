@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Card } from 'src/card/card.model';
-import { AddCardToUser, AddUserArgs, UpdateUserArgs } from './args/user.args';
+import { Order } from 'src/order/order.model';
+import { AddCardToUser, AddOrderToUser, AddUserArgs, UpdateUserArgs } from './args/user.args';
 import { User } from './user.model';
 
 @Injectable()
@@ -13,7 +14,7 @@ export class UserService {
     }
 
     async findOne(id:number) : Promise<User> {
-        let user = await this.userRepo.findOne({where:{id}, include:[Card]})
+        let user = await this.userRepo.findOne({where:{id}, include:[Card, Order]})
         if(user){
             return user
         }
@@ -53,5 +54,15 @@ export class UserService {
         user.cardId = addCardToUser.card.id;
         await user.save()
         return "Card added to user successfully"
+    }
+
+    async addOrderToUser(addordertoUser: AddOrderToUser): Promise<string> {
+        let user : User = await this.findOne(addordertoUser.userId)
+        if(!user){
+            return 'No user found against this userID'
+        }
+        user.orders.push(addordertoUser.order)
+        console.log(user)
+        await user.save()
     }
 }

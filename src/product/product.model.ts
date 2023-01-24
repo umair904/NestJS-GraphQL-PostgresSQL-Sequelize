@@ -1,10 +1,9 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
 import { AutoIncrement, Column, HasOne, Model, PrimaryKey, Table } from "sequelize-typescript";
-import { User } from "../user/user.model";
 
 @Table
 @ObjectType()
-export class Card extends Model {
+export class Product extends Model {
 
     @PrimaryKey
     @AutoIncrement
@@ -14,20 +13,14 @@ export class Card extends Model {
 
     @Column
     @Field()
-    cardNumber : string;
+    name : string;
 
     @Column
     @Field(()=> Int)
-    cvv : number;
+    price : number;
 
     @Column
     @Field()
-    expireDate : Date;
+    discription : string;
 
-    @Column
-    @Field()
-    type : string;
-
-    @HasOne(()=> User)
-    user : User
 }

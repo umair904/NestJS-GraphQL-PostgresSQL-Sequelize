@@ -1,5 +1,6 @@
 import { InputType, Field, Int} from '@nestjs/graphql'
 import { Card } from 'src/card/card.model';
+import { Order } from 'src/order/order.model';
 
 @InputType()
 export class AddUserArgs{
@@ -45,4 +46,14 @@ export class AddCardToUser{
     @Field()
     card: Card
 
+}
+
+@InputType()
+export class AddOrderToUser{
+
+    @Field(()=> Int)
+    userId: number
+
+    @Field()
+    order: Order
 }

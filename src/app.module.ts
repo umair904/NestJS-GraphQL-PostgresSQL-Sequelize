@@ -8,6 +8,8 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver } from '@nestjs/apollo';
 import { join } from 'path';
 import { CardModule } from './card/card.module';
+import { ProductModule } from './product/product.module';
+import { OrderModule } from './order/order.module';
 
 
 @Module({
@@ -37,6 +39,8 @@ import { CardModule } from './card/card.module';
     }),
     UserModule,
     CardModule,
+    ProductModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],
