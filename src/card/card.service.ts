@@ -15,18 +15,16 @@ export class CardService {
         let user : User = await this.userService.findOne(addCardArgs.userId)
         if(!user){
             return 'No User found against this userID'
-        }if(user.card){
-            throw new Error("Card Already Added to this User")
         }
         let card = {
         cardNumber : addCardArgs.cardNumber,
         cvv : addCardArgs.cvv,
         expireDate : addCardArgs.expireDate,
         type : addCardArgs.type,
-        user : user
+        userId : user.id
         }
         let savedCard : Card = await this.cardRepo.create(card)
-        await this.userService.addCardToUser({userId: user.id , card:savedCard})
+        // await this.userService.addCardToUser({userId: user.id , card:savedCard})
         return 'Card Has Been Created Successfully.'
     }
 

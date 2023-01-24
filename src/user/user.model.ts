@@ -1,5 +1,5 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
-import { AutoIncrement, BelongsTo, Column, ForeignKey, HasMany, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { AutoIncrement, BelongsTo, Column, ForeignKey, HasMany, HasOne, Model, PrimaryKey, Table } from "sequelize-typescript";
 import { Order } from "src/order/order.model";
 import { Card } from "../card/card.model";
 
@@ -28,15 +28,10 @@ export class User extends Model {
     @Column
     @Field({nullable:true})
     password : string;
-
-    @Column
-    @ForeignKey(()=> Card)
-    @Field(()=> Int,{nullable:true})
-    cardId: number
-
-    @BelongsTo(()=> Card)
-    @Field(()=> Card, {nullable:true})
-    card: Card
+    
+    @HasOne(()=> Card)
+    @Field(()=>Card , {nullable:true})
+    card : Card
     
     @HasMany(()=> Order)
     @Field(()=> [Order], {nullable:true})

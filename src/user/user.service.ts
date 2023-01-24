@@ -45,14 +45,14 @@ export class UserService {
         return 'User created successfully'
     }
 
-    async addCardToUser(addCardToUser : AddCardToUser): Promise<string> {
-        let user : User = await this.findOne(addCardToUser.userId)
-        if(!user){
-            return 'No user found against this userID'
-        }
-        user.card = addCardToUser.card;
-        user.cardId = addCardToUser.card.id;
-        await user.save()
-        return "Card added to user successfully"
-    }
+    // async addCardToUser(addCardToUser : AddCardToUser): Promise<string> {
+    //     let user : User = await this.findOne(addCardToUser.userId)
+    //     if(!user){
+    //         return 'No user found against this userID'
+    //     }
+    //     user.card = addCardToUser.card;
+    //     user.cardId = addCardToUser.card.id;
+    //     await user.save()
+    //     return "Card added to user successfully"
+    // }
 }
