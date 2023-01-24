@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import { OrderDetail } from 'src/order-detail/order-detail.model';
 import { User } from 'src/user/user.model';
 import { UserService } from 'src/user/user.service';
 import { AddOrderArgs } from './args/order.args';
@@ -8,6 +9,7 @@ import { Order } from './order.model';
 @Injectable()
 export class OrderService {
     constructor(@InjectModel(Order) private orderRepo: typeof Order,
+    @InjectModel(OrderDetail) private orderDetailRepo:typeof OrderDetail,
     private readonly userService : UserService
     ){}
 
@@ -33,6 +35,8 @@ export class OrderService {
             userId:addOrderArgs.userId
         }
         let orderSaved = await this.orderRepo.create(order)
+        let details = await this.orderDetailRepo.create({quantity: addOrderArgs.quantity, orderId: orderSaved.id, productId: addOrderArgs.productId})
+        console.log(details)
         return 'Order placed successfully'
     }
 }

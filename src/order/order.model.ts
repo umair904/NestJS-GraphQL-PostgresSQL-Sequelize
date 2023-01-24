@@ -1,5 +1,6 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
 import { AutoIncrement, BelongsTo, Column, ForeignKey, HasMany, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { OrderDetail } from "src/order-detail/order-detail.model";
 import { User } from "src/user/user.model";
 
 @Table
@@ -27,5 +28,9 @@ export class Order extends Model {
 
     @BelongsTo(()=> User)
     user: User
+
+    @HasMany(()=> OrderDetail)
+    @Field(()=> [OrderDetail],{nullable:true})
+    details: OrderDetail[]
 
 }

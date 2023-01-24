@@ -2,11 +2,27 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Product {
+  id: Int!
+  name: String!
+  price: Int!
+  discription: String!
+  orderDetails: [OrderDetail!]
+}
+
+type OrderDetail {
+  id: Int!
+  quantity: Int!
+  productId: Int
+  orderId: Int
+}
+
 type Order {
   id: Int!
   status: String!
   orderDate: DateTime!
   userId: Int!
+  details: [OrderDetail!]
 }
 
 """
@@ -31,14 +47,6 @@ type Card {
   expireDate: DateTime!
   type: String!
   userId: Int
-  user: User
-}
-
-type Product {
-  id: Int!
-  name: String!
-  price: Int!
-  discription: String!
 }
 
 type Query {
@@ -88,5 +96,7 @@ input AddProductArgs {
 }
 
 input AddOrderArgs {
-  userId: Float!
+  userId: Int!
+  productId: Int!
+  quantity: Int!
 }

@@ -1,5 +1,5 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
-import { AutoIncrement, BelongsTo, Column, ForeignKey, HasOne, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { AutoIncrement, BelongsTo, Column, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
 import { User } from "../user/user.model";
 
 @Table
@@ -34,6 +34,5 @@ export class Card extends Model {
     userId: number
 
     @BelongsTo(()=> User)
-    @Field(()=> User, {nullable:true})
     user: User
 }

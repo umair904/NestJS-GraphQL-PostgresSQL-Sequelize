@@ -10,6 +10,7 @@ import { join } from 'path';
 import { CardModule } from './card/card.module';
 import { ProductModule } from './product/product.module';
 import { OrderModule } from './order/order.module';
+import { OrderDetailModule } from './order-detail/order-detail.module';
 
 
 @Module({
@@ -41,6 +42,7 @@ import { OrderModule } from './order/order.module';
     CardModule,
     ProductModule,
     OrderModule,
+    OrderDetailModule,
   ],
   controllers: [AppController],
   providers: [AppService],

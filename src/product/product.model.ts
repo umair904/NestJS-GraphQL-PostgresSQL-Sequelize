@@ -1,5 +1,6 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
-import { AutoIncrement, Column, HasOne, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { AutoIncrement, Column, HasMany, HasOne, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { OrderDetail } from "src/order-detail/order-detail.model";
 
 @Table
 @ObjectType()
@@ -23,4 +24,7 @@ export class Product extends Model {
     @Field()
     discription : string;
 
+    @HasMany(()=> OrderDetail)
+    @Field(()=> [OrderDetail],{nullable:true})
+    orderDetails: OrderDetail[]
 }

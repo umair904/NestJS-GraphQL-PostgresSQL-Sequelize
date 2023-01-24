@@ -1,5 +1,5 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
-import { AutoIncrement, BelongsTo, Column, ForeignKey, HasMany, HasOne, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { AutoIncrement, Column, HasMany, HasOne, Model, PrimaryKey, Table } from "sequelize-typescript";
 import { Order } from "src/order/order.model";
 import { Card } from "../card/card.model";
 
