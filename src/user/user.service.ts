@@ -55,14 +55,4 @@ export class UserService {
         await user.save()
         return "Card added to user successfully"
     }
-
-    async addOrderToUser(addordertoUser: AddOrderToUser): Promise<string> {
-        let user : User = await this.findOne(addordertoUser.userId)
-        if(!user){
-            return 'No user found against this userID'
-        }
-        user.orders.push(addordertoUser.order)
-        console.log(user)
-        await user.save()
-    }
 }

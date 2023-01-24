@@ -30,11 +30,9 @@ export class OrderService {
         let order = {
             status: "Placed",
             orderDate: "2021-07-06 07:55:33",
-            user,
             userId:addOrderArgs.userId
         }
         let orderSaved = await this.orderRepo.create(order)
-        await this.userService.addOrderToUser({userId:addOrderArgs.userId, order: orderSaved})
         return 'Order placed successfully'
     }
 }
