@@ -24,7 +24,6 @@ export class CardService {
         userId : user.id
         }
         let savedCard : Card = await this.cardRepo.create(card)
-        // await this.userService.addCardToUser({userId: user.id , card:savedCard})
         return 'Card Has Been Created Successfully.'
     }
 

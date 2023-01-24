@@ -58,7 +58,6 @@ export class OrderService {
         if(!orderValidate){
             return "Either order dosen't exist or client id trying to delete someone else's order"
         }
-        // await this.orderDetailRepo.destroy({where:{orderId : deleteOrderArgs.orderId}})
         await this.orderRepo.destroy({where:{id: deleteOrderArgs.orderId}})
         return "Order has been removed successfully"
     }
